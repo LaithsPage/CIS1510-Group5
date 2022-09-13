@@ -429,7 +429,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4dfb11a71995b66498d656e05c0ce779, type: 2}
+  - {fileID: 2100000, guid: 198e4bcae204e8b4fb1dd22bffcd19f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -775,7 +775,7 @@ MonoBehaviour:
   Player: {fileID: 1857090818}
   distance: 10
   StartingAngle: 45
-  viewportToRotationRatio: 180
+  viewportToRotationRatio: 270
   MinXRotation: 0
   MaxXRotation: 90
 --- !u!20 &963194227
@@ -960,7 +960,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f37e3121055f76e4c807d259bed80af2, type: 2}
+  - {fileID: 2100000, guid: 573be335c8dffb647a21ffe5e2c4ce52, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1035,6 +1035,7 @@ GameObject:
   - component: {fileID: 1249690215}
   - component: {fileID: 1249690217}
   - component: {fileID: 1249690216}
+  - component: {fileID: 1249690218}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1096,6 +1097,20 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1249690218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249690214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbeb8a6e09231714ca7ede7a2990f0a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  interactionTransform: {fileID: 1249690215}
 --- !u!1 &1253180467
 GameObject:
   m_ObjectHideFlags: 0

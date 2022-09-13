@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.AI;
-
+//float distance = Vector3.Distance (object1.transform.position, object2.transform.position);
 public class PointAndClick : MonoBehaviour
 {
     public Camera cam;
     private NavMeshAgent player;
     //public Animator playerAnimator;
     //public GameObject targetDest;
+
+    Interactable focus;
     private void Awake()
     {
         player = GetComponent<NavMeshAgent>();
@@ -21,7 +23,20 @@ public class PointAndClick : MonoBehaviour
             if(Physics.Raycast(ray, out hitpoint))
             {
                 //targetDest.transform.position = hitpoint.point;
-                player.SetDestination(hitpoint.point);
+                
+
+                Interactable interactable = hitpoint.transform.parent.parent.GetComponent<Interactable>();
+                Debug.Log(interactable);
+                if (interactable != null)
+                {
+                    SetFocus(interactable);
+                    
+                }
+                else
+                {
+                    RemoveFocus();
+                    player.SetDestination(hitpoint.point);
+                }
             }
         }
 
@@ -33,5 +48,57 @@ public class PointAndClick : MonoBehaviour
         {
             playerAnimator.SetBool("isWalking", false);
         }*/
+
+        if(focus != null)
+        {
+            player.SetDestination(focus.interactionTransform.position);
+            FaceTarget();
+        }
     }
+
+    public void StartNav()
+    {
+        gameObject.GetComponent<NavMeshAgent>().isStopped = false;
+    }
+
+    public void StopNav()
+    {
+        gameObject.GetComponent<NavMeshAgent>().isStopped = true;
+    }
+
+    void SetFocus(Interactable newFocus)
+    {
+        if(newFocus != focus)
+        {
+            if(focus != null)
+                focus.OnDefocused();
+
+            focus = newFocus;
+
+            //navmesh stuff
+            player.stoppingDistance = focus.radius * .8f;
+            player.updateRotation = false;
+        }
+
+        focus.OnFocused(transform);
+    }
+
+    void RemoveFocus()
+    {
+        if (focus != null)
+            focus.OnDefocused();
+        focus = null;
+
+        //navmesh stuff
+        player.stoppingDistance = 0;
+        player.updateRotation = true;
+    }
+
+    void FaceTarget()
+    {
+        Vector3 direction = (focus.transform.position - player.transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+    //player.stoppingDistance = attack range
 }
