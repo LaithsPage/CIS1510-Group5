@@ -25,14 +25,14 @@ public class PointAndClick : MonoBehaviour
                 //targetDest.transform.position = hitpoint.point;
                 
 
-                Interactable interactable = hitpoint.transform.parent.parent.GetComponent<Interactable>();
-                Debug.Log(interactable);
+                Interactable interactable = hitpoint.transform.GetComponent<Interactable>();
+                //Debug.Log(interactable);
                 if (interactable != null)
                 {
                     SetFocus(interactable);
                     
                 }
-                else
+                else if (interactable == null)
                 {
                     RemoveFocus();
                     player.SetDestination(hitpoint.point);
