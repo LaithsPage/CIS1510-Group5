@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: Don't go through terrain. Solution might be to raycast downwards and change the minxrotation if the distance is less 
+
 public class CamOrbit : MonoBehaviour
 {
     public Transform Player;
