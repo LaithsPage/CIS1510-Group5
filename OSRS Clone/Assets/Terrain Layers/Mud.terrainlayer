@@ -6,11 +6,11 @@ TerrainLayer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NewLayer 2
-  m_DiffuseTexture: {fileID: 2800000, guid: 7e5f7f835a789124ea3bf25f621104d7, type: 3}
-  m_NormalMapTexture: {fileID: 2800000, guid: 4f982e196400dae478ee91e8f8e7bc13, type: 3}
+  m_Name: Mud
+  m_DiffuseTexture: {fileID: 2800000, guid: 0d7c000b1c0e89e4baa2d78fd6a4738c, type: 3}
+  m_NormalMapTexture: {fileID: 2800000, guid: 61fcd77ac8fce5b4db446bc644f44046, type: 3}
   m_MaskMapTexture: {fileID: 0}
-  m_TileSize: {x: 25, y: 25}
+  m_TileSize: {x: 10, y: 10}
   m_TileOffset: {x: 0, y: 0}
   m_Specular: {r: 0, g: 0, b: 0, a: 0}
   m_Metallic: 0

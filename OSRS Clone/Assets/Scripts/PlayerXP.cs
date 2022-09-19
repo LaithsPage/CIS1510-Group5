@@ -5,38 +5,15 @@ using UnityEngine;
 
 public class PlayerXP : XPParent
 {
-    public enum XPType
+    public void setXP(XPType type, int set)
     {
-        Attack,
-        Magic,
-        Construction
-    }
-    Dictionary<XPType, float> xp = new Dictionary<XPType, float>();
-
-    private void Start()
-    {
-        foreach(XPType x in Enum.GetValues(typeof(XPType)))
-        {
-            xp.Add(x, 0);
-        }
+        xp[type] = set;
+        xpLevel[type] = (int)Mathf.Pow(set, 1 / exponent);
     }
 
-    public void addXP(XPType type, float add)
+    public void setXPLevel(XPType type, int set)
     {
-        xp[type] += add;
-    }
-
-    public float getXP(XPType type)
-    {
-        return xp[type];
-    }
-
-    public float getLevel(XPType type)
-    {
-
-
-
-        return 0f;
+        xpLevel[type] = set;
     }
 
 }
