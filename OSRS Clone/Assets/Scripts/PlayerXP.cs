@@ -14,6 +14,7 @@ public class PlayerXP : XPParent
     public void setXPLevel(XPType type, int set)
     {
         xpLevel[type] = set;
+        xp[type] = xpPerLevel[xpLevel[type]];
     }
 
 }

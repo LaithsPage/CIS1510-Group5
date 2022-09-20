@@ -1436,3 +1436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07756f34f6b8c324faffe680437c2ed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xpPerLevel: 
+  maxLevel: 100
+  exponent: 2.5

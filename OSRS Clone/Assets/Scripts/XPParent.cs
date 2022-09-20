@@ -8,26 +8,26 @@ public class XPParent : MonoBehaviour
     public enum XPType
     {
         Attack,
-        Magic,
-        Construction
+        Magic
     }
+
     public Dictionary<XPType, int> xp = new Dictionary<XPType, int>();
     public Dictionary<XPType, int> xpLevel = new Dictionary<XPType, int>();
 
+    public List<int> xpPerLevel;
+    public int maxLevel = 100;
     public float exponent = 2.5f;
-
-    public float[] xpPerLevel;
 
     private void Start()
     {
         foreach (XPType x in Enum.GetValues(typeof(XPType)))
         {
-            xp.Add(x, 0);
-            xpLevel.Add(x, 0);
+            xp.Add(x, 1);
+            xpLevel.Add(x, 1);
         }
-        for(int i = 0; i < 100; i++)
+        for(int i = 0; i <= maxLevel; i++)
         {
-            xpPerLevel[i] = (int)Mathf.Pow(i, exponent); //LEVEL 100 = 1000xp with x^1.5, 10000 with x^2
+            xpPerLevel.Add((int)Mathf.Pow(i, exponent)); //LEVEL 100 = 1000xp with x^1.5, 10000 with x^2
         }
     }
 
@@ -35,8 +35,9 @@ public class XPParent : MonoBehaviour
     {
         xp[type] += add;
 
-        if (xp[type] >= xpPerLevel[xpLevel[type]])
+        if (xp[type] >= xpPerLevel[xpLevel[type] + 1] && xpLevel[type] < maxLevel)
         {
+            xpLevel[type] += 1;
         }
     }
 
