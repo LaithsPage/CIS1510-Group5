@@ -5,13 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Weapon", fileName = "Weapon")]
 public class Weapon : ScriptableObject
 {
-    enum WeaponType
+    public enum WeaponType
     {
         Melee,
         Ranged,
         Magic
     }
-    [SerializeField] WeaponType weaponType;
+    [SerializeField] public WeaponType weaponType;
+    public float damage;
     public float fireRate;
     public float range;
 }

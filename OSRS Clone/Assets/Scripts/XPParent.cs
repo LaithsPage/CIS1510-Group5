@@ -8,6 +8,7 @@ public class XPParent : MonoBehaviour
     public enum XPType
     {
         Attack,
+        Ranged,
         Magic
     }
 
