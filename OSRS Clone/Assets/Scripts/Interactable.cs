@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
+    public enum PrimaryAction
+    {
+        WalkTo,
+        Attack
+    }
+    public PrimaryAction primaryAction = PrimaryAction.WalkTo;
     public float radius = 3f;
     public Transform interactionTransform;
 
