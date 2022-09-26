@@ -11,7 +11,7 @@ public class Weapon : ScriptableObject
         Ranged,
         Magic
     }
-    [SerializeField] public WeaponType weaponType;
+    public WeaponType weaponType;
     public float damage;
     public float fireRate;
     public float range;
