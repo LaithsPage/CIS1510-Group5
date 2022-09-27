@@ -19,8 +19,33 @@ public class XPParent : MonoBehaviour
     public int maxLevel = 100;
     public float exponent = 2.5f;
 
+    public float startingAccuracy;
+    public float halfwayAccuracy;
+
+
+    //private stuff for accuracy
+    private float a;
+    private float f1;
+    private float f2;
+
+    private float p11;
+    private float p13;
+    private float p2;
+
+    public List<float> accuracyPerLevel;
+
     private void Start()
     {
+        //Accuracy constants
+        a = (1f - (2f * halfwayAccuracy)) / (halfwayAccuracy - 1f);
+        f1 = 1f / (1f - (1f / (a + 1f)));
+        f2 = 1f + 1f / ((1f / startingAccuracy) - 1f);
+        p11 = -1f * a * f2;
+        p13 = 1 / a;
+        p2 = 1 - startingAccuracy;
+
+
+        //Level stuff
         foreach (XPType x in Enum.GetValues(typeof(XPType)))
         {
             xp.Add(x, 1);
@@ -29,6 +54,7 @@ public class XPParent : MonoBehaviour
         for(int i = 0; i <= maxLevel; i++)
         {
             xpPerLevel.Add((int)Mathf.Pow(i, exponent)); //LEVEL 100 = 1000xp with x^1.5, 10000 with x^2
+            accuracyPerLevel.Add(calculateAccuracy(i));
         }
     }
 
@@ -62,6 +88,13 @@ public class XPParent : MonoBehaviour
         {
             return 0f;
         }
+    }
+
+    private float calculateAccuracy(int i)
+    {
+        float p12 = (float)i / (float)maxLevel;
+        float p1 = 1 / (p11 * (p12 + p13));
+        return startingAccuracy + f1 * (p1 + p2);
     }
 
 }

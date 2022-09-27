@@ -512,6 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c1fa4398e48d34ab9ccfe86b0be470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  primaryAction: 0
   radius: 3
   interactionTransform: {fileID: 537273616}
 --- !u!114 &537273618
@@ -1440,6 +1441,9 @@ MonoBehaviour:
   xpPerLevel: 
   maxLevel: 100
   exponent: 2.5
+  startingAccuracy: 0.3
+  halfwayAccuracy: 0.85
+  accuracyPerLevel: []
 --- !u!114 &1857090826
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class Attack : MonoBehaviour
     public float range;
 
     private Inventory inventory;
-
+    private PlayerXP xp;
     private Transform target;
     private bool startUpdate = false;
 
@@ -24,6 +24,7 @@ public class Attack : MonoBehaviour
         fireRate = inventory.getWeaponFireRate();
         range = inventory.getWeaponRange();
         waitTime = 1 / fireRate;
+        xp = GetComponent<PlayerXP>();
     }
     private void Update()
     {
@@ -54,6 +55,23 @@ public class Attack : MonoBehaviour
 
     private void doAttack()
     {
-        target.GetComponent<Health>().attack(damage);
+        
+        if (xp != null)
+        {
+            int level = (int)xp.getLevel(inventory.weaponTypeToXP());
+            float accuracy = xp.accuracyPerLevel[level];
+
+            float random = Random.Range(0, 1);
+            if(random <= accuracy)
+            {
+                target.GetComponent<Health>().attack(damage);
+            }
+            else
+            {
+                target.GetComponent<Health>().attack(0);
+            }
+            
+        }
+        
     }
 }
