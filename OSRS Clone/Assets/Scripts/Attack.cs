@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Attack : MonoBehaviour
 {
-    public float damage;
-    public float fireRate;
-    public float range;
+    float damage;
+    float fireRate;
+    float range;
 
     private Inventory inventory;
     private PlayerXP xp;
@@ -14,6 +15,7 @@ public class Attack : MonoBehaviour
     private bool startUpdate = false;
 
     private float waitTime;
+    private float nextFireTime = 0f;
     private void Awake()
     {
         inventory = GetComponent<Inventory>();
@@ -28,15 +30,16 @@ public class Attack : MonoBehaviour
     }
     private void Update()
     {
-        if (startUpdate)
+        if (startUpdate && target.GetComponent<Health>().getHealth() > 0)
         {
+
             damage = inventory.getWeaponDamage();
             fireRate = inventory.getWeaponFireRate();
             range = inventory.getWeaponRange();
-            float nextFireTime = Time.time + waitTime;
-            if(nextFireTime <= Time.time)
+            if (nextFireTime <= Time.time)
             {
                 doAttack();
+                nextFireTime = Time.time + waitTime;
             }
         }
     }
@@ -61,16 +64,19 @@ public class Attack : MonoBehaviour
             int level = (int)xp.getLevel(inventory.weaponTypeToXP());
             float accuracy = xp.accuracyPerLevel[level];
 
-            float random = Random.Range(0, 1);
+            float random = Random.Range(0f, 1f);
             if(random <= accuracy)
             {
                 target.GetComponent<Health>().attack(damage);
+                Debug.Log("Hit! "+ target.GetComponent<Health>().getHealth());
             }
             else
             {
                 target.GetComponent<Health>().attack(0);
+                Debug.Log("Miss! " + target.GetComponent<Health>().getHealth());
+
             }
-            
+
         }
         
     }

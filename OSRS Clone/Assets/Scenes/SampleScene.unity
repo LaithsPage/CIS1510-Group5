@@ -479,6 +479,10 @@ GameObject:
   - component: {fileID: 537273619}
   - component: {fileID: 537273618}
   - component: {fileID: 537273617}
+  - component: {fileID: 537273623}
+  - component: {fileID: 537273626}
+  - component: {fileID: 537273625}
+  - component: {fileID: 537273624}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -509,12 +513,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 537273615}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92c1fa4398e48d34ab9ccfe86b0be470, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ed627a1621ef0441b1739f1e56a1938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryAction: 0
+  primaryAction: 1
   radius: 3
   interactionTransform: {fileID: 537273616}
+  player: {fileID: 0}
 --- !u!114 &537273618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,6 +622,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 537273615}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &537273623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537273615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a368a60df6652429383e65d52b44de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+--- !u!114 &537273624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537273615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e995988008fa0e44f9b2d0500cf20816, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xpPerLevel: 
+  accuracyPerLevel: []
+  maxLevel: 100
+  exponent: 2.5
+  startingAccuracy: 0
+  halfwayAccuracy: 0
+  setLevel: 0
+--- !u!114 &537273625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537273615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7903b962b0611c544a916bc1c4704fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &537273626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537273615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 166a4f295fbab044f8e732009ffe9927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defenseStyle: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1294,6 +1356,8 @@ GameObject:
   - component: {fileID: 1857090821}
   - component: {fileID: 1857090825}
   - component: {fileID: 1857090826}
+  - component: {fileID: 1857090827}
+  - component: {fileID: 1857090828}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1439,11 +1503,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xpPerLevel: 
+  accuracyPerLevel: []
   maxLevel: 100
   exponent: 2.5
   startingAccuracy: 0.3
   halfwayAccuracy: 0.85
-  accuracyPerLevel: []
 --- !u!114 &1857090826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1457,3 +1521,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 48b20b93f9e733745bce517d616bbe20, type: 2}
+--- !u!114 &1857090827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857090817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a368a60df6652429383e65d52b44de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+--- !u!114 &1857090828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857090817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45696fd4ce9280749810cf118150a0d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

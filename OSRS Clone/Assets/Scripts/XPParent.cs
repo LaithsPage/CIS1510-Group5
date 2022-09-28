@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 
 public class XPParent : MonoBehaviour
@@ -15,7 +16,10 @@ public class XPParent : MonoBehaviour
     public Dictionary<XPType, int> xp = new Dictionary<XPType, int>();
     public Dictionary<XPType, int> xpLevel = new Dictionary<XPType, int>();
 
+    [Header("Parent Vars")]
     public List<int> xpPerLevel;
+    public List<float> accuracyPerLevel;
+
     public int maxLevel = 100;
     public float exponent = 2.5f;
 
@@ -32,9 +36,8 @@ public class XPParent : MonoBehaviour
     private float p13;
     private float p2;
 
-    public List<float> accuracyPerLevel;
 
-    private void Start()
+    private void Awake()
     {
         //Accuracy constants
         a = (1f - (2f * halfwayAccuracy)) / (halfwayAccuracy - 1f);
@@ -44,14 +47,13 @@ public class XPParent : MonoBehaviour
         p13 = 1 / a;
         p2 = 1 - startingAccuracy;
 
-
         //Level stuff
         foreach (XPType x in Enum.GetValues(typeof(XPType)))
         {
             xp.Add(x, 1);
             xpLevel.Add(x, 1);
         }
-        for(int i = 0; i <= maxLevel; i++)
+        for (int i = 0; i <= maxLevel; i++)
         {
             xpPerLevel.Add((int)Mathf.Pow(i, exponent)); //LEVEL 100 = 1000xp with x^1.5, 10000 with x^2
             accuracyPerLevel.Add(calculateAccuracy(i));
@@ -95,6 +97,14 @@ public class XPParent : MonoBehaviour
         float p12 = (float)i / (float)maxLevel;
         float p1 = 1 / (p11 * (p12 + p13));
         return startingAccuracy + f1 * (p1 + p2);
+    }
+
+    public void fixLevels()
+    {
+        foreach(KeyValuePair<XPType, int> entry in xp)
+        {
+            xpLevel[entry.Key] = (int)Mathf.Pow(xp[entry.Key] + 1, 1 / exponent);
+        }
     }
 
 }

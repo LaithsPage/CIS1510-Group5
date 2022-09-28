@@ -15,7 +15,7 @@ public class Interactable : MonoBehaviour
 
 
     bool isFocus = false;
-    Transform player;
+    [HideInInspector]public Transform player;
 
     bool hasInteracted = false;
 
@@ -50,7 +50,6 @@ public class Interactable : MonoBehaviour
         isFocus = false;
         player = null;
         hasInteracted = false;
-
     }
 
     private void OnDrawGizmosSelected()

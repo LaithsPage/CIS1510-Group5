@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Dev
   m_EditorClassIdentifier: 
   weaponType: 0
-  fireRate: 1
+  damage: 50
+  fireRate: 0.5
   range: 3

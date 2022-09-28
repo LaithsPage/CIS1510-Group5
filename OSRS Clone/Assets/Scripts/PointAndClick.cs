@@ -76,7 +76,17 @@ public class PointAndClick : MonoBehaviour
             focus = newFocus;
 
             //navmesh stuff
-            player.stoppingDistance = focus.radius * .8f;
+            float radius;
+            if(focus.primaryAction == Interactable.PrimaryAction.Attack)
+            {
+                radius = GetComponent<Inventory>().getWeaponRange();
+                Debug.Log(radius);
+            }
+            else
+            {
+                radius = focus.radius;
+            }
+            player.stoppingDistance = radius * .9f;
             player.updateRotation = false;
         }
 
