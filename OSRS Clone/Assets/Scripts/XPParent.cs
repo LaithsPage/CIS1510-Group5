@@ -101,9 +101,9 @@ public class XPParent : MonoBehaviour
 
     public void fixLevels()
     {
-        foreach(KeyValuePair<XPType, int> entry in xp)
+        foreach(XPType x in Enum.GetValues(typeof(XPType)))
         {
-            xpLevel[entry.Key] = (int)Mathf.Pow(xp[entry.Key] + 1, 1 / exponent);
+            xpLevel[x] = (int)Mathf.Pow(xp[x] + 1, 1 / exponent);
         }
     }
 

@@ -46,6 +46,7 @@ public class Attack : MonoBehaviour
 
     public void startAttack(Transform Enemy)
     {
+        nextFireTime = Time.time + waitTime;
         startUpdate = true;
         target = Enemy;
     }

@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,10 +10,10 @@ public class EnemyXP : XPParent
 
     private void Start()
     {
-        foreach (KeyValuePair<XPType, int> entry in xpLevel)
+        foreach (XPType x in Enum.GetValues(typeof(XPType)))
         {
-            xpLevel[entry.Key] = setLevel;
-            xp[entry.Key] = xpPerLevel[xpLevel[entry.Key]];
+            xpLevel[x] = setLevel;
+            xp[x] = xpPerLevel[xpLevel[x]];
         }
     }
 

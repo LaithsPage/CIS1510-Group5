@@ -6,9 +6,11 @@ public class Health : MonoBehaviour
 {
     public float maxHealth = 100;
     private float health;
+    public Defense defense;
 
     private void Start()
     {
+        defense = this.GetComponent<Defense>();
         health = maxHealth;
     }
 
@@ -20,7 +22,13 @@ public class Health : MonoBehaviour
             health = 0;
     }
 
-    public void attack(float x) { takeDamage(x); }
+    public void attack(float x) { 
+        if(defense != null)
+        {
+            defense.onDefense();
+        }
+        takeDamage(x); 
+    }
 
     public void heal(float x)
     {

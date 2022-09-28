@@ -6,7 +6,8 @@ public class EnemyDeath : Death
 {
     public override void onDeath()
     {
-        this.onDeath();
+        base.onDeath(); //base is the c# equivalent of java super
+
 
     }
 }
