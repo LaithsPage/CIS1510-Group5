@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 
-public class XPParent : MonoBehaviour
+public class XPParent : MonoBehaviour //PlayerXP, EnemyXP
 {
     public enum XPType
     {

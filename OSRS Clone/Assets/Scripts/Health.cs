@@ -6,7 +6,7 @@ public class Health : MonoBehaviour
 {
     public float maxHealth = 100;
     private float health;
-    public Defense defense;
+    [HideInInspector] public Defense defense;
 
     private void Start()
     {
@@ -25,7 +25,10 @@ public class Health : MonoBehaviour
     public void attack(float x) { 
         if(defense != null)
         {
-            defense.onDefense();
+            if (defense.getUpdate() == false)
+            {
+                defense.startDefense();
+            }
         }
         takeDamage(x); 
     }

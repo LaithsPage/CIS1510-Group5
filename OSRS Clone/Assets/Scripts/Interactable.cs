@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+public class Interactable : MonoBehaviour //EnemyInteract
 {
     public enum PrimaryAction
     {
@@ -12,6 +12,7 @@ public class Interactable : MonoBehaviour
     public PrimaryAction primaryAction = PrimaryAction.WalkTo;
     public float radius = 3f;
     public Transform interactionTransform;
+
 
 
     bool isFocus = false;
@@ -45,7 +46,7 @@ public class Interactable : MonoBehaviour
         hasInteracted = false;
     }
 
-    public void OnDefocused()
+    public virtual void OnDefocused()
     {
         isFocus = false;
         player = null;
