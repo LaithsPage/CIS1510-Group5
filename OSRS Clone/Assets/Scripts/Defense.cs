@@ -18,15 +18,29 @@ public class Defense : MonoBehaviour //EnemyDefense
 
     private bool startUpdate = false;
 
+    public delegate void DoDefense();
+    public static event DoDefense doDefense;
+
+    Attack attack;
+    private Transform attacker;
+
+    private Patrol patrol;
 
     private void Start()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
+        attack = gameObject.GetComponent<Attack>();
+        patrol = gameObject.GetComponent<Patrol>();
+
+        doDefense = () => Debug.Log("doDefense has not been Assigned");
     }
 
     private void Update()
     {
-        
+        if (startUpdate)
+        {
+            doDefense();
+        }
     }
 
     public bool getUpdate()
@@ -46,6 +60,8 @@ public class Defense : MonoBehaviour //EnemyDefense
                 agent.speed *= 2f;
                 break;
             case DefensiveStyle.Aggressive:
+                attack?.endAttack();
+                patrol?.GotoNextPoint();
                 break;
             case DefensiveStyle.Scared:
                 break;
@@ -58,20 +74,29 @@ public class Defense : MonoBehaviour //EnemyDefense
     public void startDefense()
     {
         startUpdate = true;
-        if (startUpdate)
+        switch (defenseStyle)
         {
-            switch (defenseStyle)
-            {
-                case DefensiveStyle.Passive:
-                    agent.speed *= .5f;
-                    break;
-                case DefensiveStyle.Aggressive:
-                    break;
-                case DefensiveStyle.Scared:
-                    break;
-                default:
-                    break;
-            }
+            case DefensiveStyle.Passive:
+                agent.speed *= .5f;
+                break;
+            case DefensiveStyle.Aggressive:
+                doDefense = () =>
+                {
+                    if (this.GetComponent<Attack>() == null)
+                        return;
+                    attack.startAttack(attacker);
+                    agent.SetDestination(attacker.position);
+                };
+                break;
+            case DefensiveStyle.Scared:
+                break;
+            default:
+                break;
         }
+    }
+
+    public void SetAttacker(Transform attacker)
+    {
+        this.attacker = attacker;
     }
 }

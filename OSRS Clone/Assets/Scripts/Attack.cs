@@ -62,6 +62,12 @@ public class Attack : MonoBehaviour
         
         if (xp != null)
         {
+            Defense d = target.GetComponent<Defense>();
+            if (d != null)
+            {
+                d.SetAttacker(this.transform);
+            }
+
             int level = (int)xp.getLevel(inventory.weaponTypeToXP());
             float accuracy = xp.accuracyPerLevel[level];
 
@@ -77,7 +83,7 @@ public class Attack : MonoBehaviour
                 Debug.Log("Miss! " + target.GetComponent<Health>().getHealth());
 
             }
-
+            
         }
         
     }

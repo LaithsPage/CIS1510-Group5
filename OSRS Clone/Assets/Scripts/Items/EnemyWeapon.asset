@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16eced1e24a1b8945b12c7c4c413cbe3, type: 3}
-  m_Name: Dev
+  m_Name: EnemyWeapon
   m_EditorClassIdentifier: 
   weaponType: 0
-  damage: 25
-  fireRate: 0.5
-  range: 2
+  damage: 10
+  fireRate: 1.5
+  range: 3

@@ -53,9 +53,9 @@ public class Interactable : MonoBehaviour //EnemyInteract
         hasInteracted = false;
     }
 
-    private void OnDrawGizmosSelected()
+    /*private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(interactionTransform.position, radius);
-    }
+    }*/
 }
