@@ -59,32 +59,40 @@ public class Attack : MonoBehaviour
 
     private void doAttack()
     {
-        
-        if (xp != null)
+        float accuracy;
+
+        if(xp == null)
         {
-            Defense d = target.GetComponent<Defense>();
-            if (d != null)
-            {
-                d.SetAttacker(this.transform);
-            }
-
-            int level = (int)xp.getLevel(inventory.weaponTypeToXP());
-            float accuracy = xp.accuracyPerLevel[level];
-
-            float random = Random.Range(0f, 1f);
-            if(random <= accuracy)
-            {
-                target.GetComponent<Health>().attack(damage);
-                Debug.Log("Hit! "+ target.GetComponent<Health>().getHealth());
-            }
-            else
-            {
-                target.GetComponent<Health>().attack(0);
-                Debug.Log("Miss! " + target.GetComponent<Health>().getHealth());
-
-            }
-            
+            accuracy = 0.3f;
         }
+        else
+        {
+            int level = (int)xp.getLevel(inventory.weaponTypeToXP());
+            accuracy = xp.accuracyPerLevel[level];
+        }
+        Defense d = target.GetComponent<Defense>();
+        if (d != null)
+        {
+            d.SetAttacker(this.transform);
+        }
+
+        
+            
+
+        float random = Random.Range(0f, 1f);
+        if(random <= accuracy)
+        {
+            target.GetComponent<Health>().attack(damage);
+            Debug.Log("Hit! "+ target.GetComponent<Health>().getHealth() + " " + ("" + target).Split(' ')[0]);
+        }
+        else
+        {
+            target.GetComponent<Health>().attack(0);
+            Debug.Log("Miss! " + target.GetComponent<Health>().getHealth() + " " + ("" + target).Split(' ')[0]);
+
+        }
+            
+        
         
     }
 }

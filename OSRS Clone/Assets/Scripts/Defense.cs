@@ -26,11 +26,14 @@ public class Defense : MonoBehaviour //EnemyDefense
 
     private Patrol patrol;
 
+    public Inventory inventory;
+
     private void Start()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
         attack = gameObject.GetComponent<Attack>();
         patrol = gameObject.GetComponent<Patrol>();
+        inventory = gameObject.GetComponent<Inventory>();
 
         doDefense = () => Debug.Log("doDefense has not been Assigned");
     }
@@ -39,7 +42,7 @@ public class Defense : MonoBehaviour //EnemyDefense
     {
         if (startUpdate)
         {
-            doDefense();
+            doDefense?.Invoke();
         }
     }
 
@@ -68,6 +71,7 @@ public class Defense : MonoBehaviour //EnemyDefense
             default:
                 break;
         }
+        doDefense = null;
         startUpdate = false;
     }
 
@@ -80,13 +84,7 @@ public class Defense : MonoBehaviour //EnemyDefense
                 agent.speed *= .5f;
                 break;
             case DefensiveStyle.Aggressive:
-                doDefense = () =>
-                {
-                    if (this.GetComponent<Attack>() == null)
-                        return;
-                    attack.startAttack(attacker);
-                    agent.SetDestination(attacker.position);
-                };
+                doDefense += aggressiveDefense;
                 break;
             case DefensiveStyle.Scared:
                 break;
@@ -98,5 +96,20 @@ public class Defense : MonoBehaviour //EnemyDefense
     public void SetAttacker(Transform attacker)
     {
         this.attacker = attacker;
+    }
+
+    public void aggressiveDefense()
+    {
+        
+        if (this.GetComponent<Attack>() == null)
+            return;
+        attack.startAttack(attacker);
+        /*
+            player.stoppingDistance = radius * .9f;
+            player.updateRotation = false;
+        */
+        agent.stoppingDistance = inventory.getWeaponRange() * 0.9f;
+        agent.SetDestination(attacker.position);
+        
     }
 }
