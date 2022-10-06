@@ -16,7 +16,8 @@ public class Interactable : MonoBehaviour //EnemyInteract
 
 
     bool isFocus = false;
-    [HideInInspector]public Transform player;
+    [HideInInspector]
+    public Transform player;
 
     bool hasInteracted = false;
 

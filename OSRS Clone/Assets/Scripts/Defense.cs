@@ -26,6 +26,7 @@ public class Defense : MonoBehaviour //EnemyDefense
 
     private Patrol patrol;
 
+    [HideInInspector]
     public Inventory inventory;
 
     private void Start()
@@ -64,6 +65,7 @@ public class Defense : MonoBehaviour //EnemyDefense
                 break;
             case DefensiveStyle.Aggressive:
                 attack?.endAttack();
+                agent.stoppingDistance = 0;
                 patrol?.GotoNextPoint();
                 break;
             case DefensiveStyle.Scared:
@@ -71,7 +73,7 @@ public class Defense : MonoBehaviour //EnemyDefense
             default:
                 break;
         }
-        doDefense = null;
+        doDefense = () => Debug.Log("doDefense has not been Assigned");
         startUpdate = false;
     }
 
@@ -84,7 +86,8 @@ public class Defense : MonoBehaviour //EnemyDefense
                 agent.speed *= .5f;
                 break;
             case DefensiveStyle.Aggressive:
-                doDefense += aggressiveDefense;
+                doDefense = null;
+                aggressiveDefense();
                 break;
             case DefensiveStyle.Scared:
                 break;
