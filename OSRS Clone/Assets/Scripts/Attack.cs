@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 
 public class Attack : MonoBehaviour
 {
-    float damage;
+    int damage;
     float fireRate;
     float range;
 
@@ -16,6 +16,8 @@ public class Attack : MonoBehaviour
 
     private float waitTime;
     private float nextFireTime = 0f;
+
+
     private void Awake()
     {
         inventory = GetComponent<Inventory>();
@@ -89,7 +91,8 @@ public class Attack : MonoBehaviour
         {
             target.GetComponent<Health>().attack(0);
             Debug.Log("Miss! " + target.GetComponent<Health>().getHealth() + " " + ("" + target).Split(' ')[0]);
-
+            //instantiate a hitsplat 
+            
         }
             
         

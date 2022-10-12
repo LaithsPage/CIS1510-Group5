@@ -12,7 +12,7 @@ public class Weapon : ScriptableObject
         Magic
     }
     public WeaponType weaponType;
-    public float damage;
+    public int damage;
     public float fireRate;
     public float range;
 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6752690550359140380}
   - component: {fileID: 6752690550359140378}
   - component: {fileID: 6752690550359140379}
+  - component: {fileID: -7666864448484012971}
   m_Layer: 5
   m_Name: hitsplat
   m_TagString: Untagged
@@ -76,6 +77,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-7666864448484012971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6752690550359140381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 644e232fadd6a254c8ba3449701caf02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6752690550854464563
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +154,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 67423d9487f50194480be5a8fd4a951e, type: 2}
   m_sharedMaterial: {fileID: -6047257669524143233, guid: 67423d9487f50194480be5a8fd4a951e, type: 2}
@@ -168,8 +181,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0

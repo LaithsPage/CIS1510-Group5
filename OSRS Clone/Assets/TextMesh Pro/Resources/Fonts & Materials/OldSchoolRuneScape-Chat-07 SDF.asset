@@ -101,7 +101,7 @@ Material:
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
-    - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+    - _UnderlayColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &11400000
 MonoBehaviour:
@@ -113,14 +113,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: RuneScape-Chat-07 SDF
+  m_Name: OldSchoolRuneScape-Chat-07 SDF
   m_EditorClassIdentifier: 
-  hashCode: 753899104
+  hashCode: 1675566003
   material: {fileID: -6047257669524143233}
-  materialHashCode: -1047216960
+  materialHashCode: -1997975117
   m_Version: 1.1.0
-  m_SourceFontFileGUID: ae8231f396ddb0041a15e06f917766fa
-  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: ae8231f396ddb0041a15e06f917766fa, type: 3}
+  m_SourceFontFileGUID: be52b34fe0d87a34f976676668256d6a
+  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: be52b34fe0d87a34f976676668256d6a, type: 3}
   m_SourceFontFile: {fileID: 12800000, guid: ae8231f396ddb0041a15e06f917766fa, type: 3}
   m_AtlasPopulationMode: 1
   m_FaceInfo:

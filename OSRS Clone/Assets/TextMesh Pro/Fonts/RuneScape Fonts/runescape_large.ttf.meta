@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ae8231f396ddb0041a15e06f917766fa
+guid: 0d0fa38cc543bf14988dde0ddf25af2a
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - RuneScape Chat '07
+  - RuneScape Large
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

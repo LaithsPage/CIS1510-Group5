@@ -18,7 +18,7 @@ public class Inventory : MonoBehaviour
     {
         this.weapon = weapon;
     }
-    public float getWeaponDamage()
+    public int getWeaponDamage()
     {
         return weapon.damage;
     }
