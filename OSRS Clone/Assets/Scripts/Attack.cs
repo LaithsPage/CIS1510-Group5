@@ -17,6 +17,7 @@ public class Attack : MonoBehaviour
     private float waitTime;
     private float nextFireTime = 0f;
 
+    public Camera mainCamera;
 
     private void Awake()
     {
@@ -85,7 +86,9 @@ public class Attack : MonoBehaviour
         if(random <= accuracy)
         {
             target.GetComponent<Health>().attack(damage);
-            Debug.Log("Hit! "+ target.GetComponent<Health>().getHealth() + " " + ("" + target).Split(' ')[0]);
+            //Debug.Log("Hit! "+ target.GetComponent<Health>().getHealth() + " " + ("" + target).Split(' ')[0]);
+            
+            hitSplat.Create(mainCamera.WorldToScreenPoint(this.transform.position), damage);
         }
         else
         {
@@ -94,7 +97,7 @@ public class Attack : MonoBehaviour
             //instantiate a hitsplat 
             
         }
-            
+        
         
         
     }

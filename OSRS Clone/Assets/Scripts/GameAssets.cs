@@ -1,8 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GameAssets : MonoBehaviour
-{
-    
+public class GameAssets : MonoBehaviour {
+
+    private static GameAssets _i;
+
+    public static GameAssets i {
+        get {
+            if (_i == null) //FUCK YOU
+                _i = (Instantiate(Resources.Load("GameAssets")) as GameObject).GetComponent<GameAssets>();
+            return _i;
+        }
+    }
+
+    public Transform pfHitSplat;
+
 }
