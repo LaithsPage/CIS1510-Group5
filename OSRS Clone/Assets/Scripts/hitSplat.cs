@@ -6,42 +6,48 @@ using TMPro;
 public class hitSplat : MonoBehaviour
 {
     // Create a Damage Popup
-    public static hitSplat Create(Vector3 position, int damageAmount)
+    public static void Create(Camera cam, Transform parent, Transform recipient, int damageAmount)
     {
-        Transform hitSplatTransform = Instantiate(GameAssets.i.pfHitSplat, position, Quaternion.identity); //THIS IS WHERE THE ERROR IS
+        Transform pfHitSplat = Resources.Load<Transform>("hitSplat");
+        Transform hitSplatTransform = Instantiate(pfHitSplat, cam.WorldToScreenPoint(recipient.transform.position), Quaternion.identity, parent); //THIS IS WHERE THE ERROR IS
 
         hitSplat _hitsplat = hitSplatTransform.GetComponent<hitSplat>();
-        _hitsplat.Setup(damageAmount);
-
-        return null;
+        _hitsplat.Setup(damageAmount, cam, recipient);
     }
 
     private static int sortingOrder;
 
-    private TextMeshPro textMesh;
+    private TextMeshProUGUI textMesh;
     private float deleteTime = 1f;
-    private float disappearTimer;
+    private float disappearTime;
     private Vector3 moveVector;
+
+    private Camera cam;
+    private Transform recipient;
 
     private void Awake()
     {
-        textMesh = transform.GetComponent<TextMeshPro>();
+        textMesh = this.transform.GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    public void Setup(int damageAmount)
+    public void Setup(int damageAmount, Camera cam, Transform recipient)
     {
+        this.cam = cam;
+        this.recipient = recipient;
+
         textMesh.SetText(damageAmount.ToString());
 
-        disappearTimer = deleteTime;
+        disappearTime = deleteTime;
 
         sortingOrder++;
-        textMesh.sortingOrder = sortingOrder;
+        //textMesh.sortingOrder = sortingOrder;
 
         moveVector = new Vector3(.7f, 1) * 60f;
     }
 
-    private void Update()
+    void Update()
     {
+        this.transform.position = cam.WorldToScreenPoint(recipient.transform.position);
         //transform.position += moveVector * Time.deltaTime;
         moveVector -= moveVector * 8f * Time.deltaTime;
 
@@ -58,10 +64,10 @@ public class hitSplat : MonoBehaviour
             transform.localScale -= Vector3.one * decreaseScaleAmount * Time.deltaTime;
         }*/
 
-        disappearTimer -= Time.deltaTime;
-        if (disappearTimer < 0)
+        disappearTime -= Time.deltaTime;
+        if (disappearTime < 0)
         {
-            Destroy(GetComponent<GameObject>());
+            Destroy(gameObject);
         }
     }
 }

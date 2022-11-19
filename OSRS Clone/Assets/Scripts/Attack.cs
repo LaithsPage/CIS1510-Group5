@@ -17,7 +17,8 @@ public class Attack : MonoBehaviour
     private float waitTime;
     private float nextFireTime = 0f;
 
-    public Camera mainCamera;
+    private Camera mainCamera;
+    private Transform hitSplatParent;
 
     private void Awake()
     {
@@ -25,11 +26,15 @@ public class Attack : MonoBehaviour
     }
     private void Start()
     {
-        damage = inventory.getWeaponDamage();
+        int randomRadius = 2;
+        damage = Random.Range(inventory.getWeaponDamage() - randomRadius, inventory.getWeaponDamage() + (randomRadius + 1));
         fireRate = inventory.getWeaponFireRate();
         range = inventory.getWeaponRange();
         waitTime = 1 / fireRate;
         xp = GetComponent<PlayerXP>();
+
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        hitSplatParent = GameObject.Find("hitSplats").GetComponent<Transform>();
     }
     private void Update()
     {
@@ -88,14 +93,15 @@ public class Attack : MonoBehaviour
             target.GetComponent<Health>().attack(damage);
             //Debug.Log("Hit! "+ target.GetComponent<Health>().getHealth() + " " + ("" + target).Split(' ')[0]);
             
-            hitSplat.Create(mainCamera.WorldToScreenPoint(this.transform.position), damage);
+            hitSplat.Create(mainCamera, hitSplatParent, target, damage);
         }
         else
         {
             target.GetComponent<Health>().attack(0);
-            Debug.Log("Miss! " + target.GetComponent<Health>().getHealth() + " " + ("" + target).Split(' ')[0]);
-            //instantiate a hitsplat 
-            
+            //Debug.Log("Miss! " + target.GetComponent<Health>().getHealth() + " " + ("" + target).Split(' ')[0]);
+
+            //hitSplat.Create(mainCamera, hitSplatParent, target, 0);
+
         }
         
         
