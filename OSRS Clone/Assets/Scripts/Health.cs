@@ -1,25 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    
     public float maxHealth = 100;
     private float health;
+    private HealthBar healthBar;
     [HideInInspector] public Defense defense;
 
     private void Start()
     {
+        healthBar = this.transform.GetComponentInChildren<HealthBar>();
         defense = this.GetComponent<Defense>();
         health = maxHealth;
+
+        healthBar.SetMaxHealth(health);
     }
 
     public void takeDamage(float x)
     {
         health -= x;
+        healthBar.SetHealth(health);
 
         if(health < 0)
             health = 0;
+
+        
     }
 
     public void attack(float x) { 
@@ -44,6 +53,11 @@ public class Health : MonoBehaviour
     public float getHealth()
     {
         return health;
+    }
+
+    public float getMaxHealth()
+    {
+        return maxHealth;
     }
 
 }

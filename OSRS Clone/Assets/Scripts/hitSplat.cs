@@ -9,7 +9,12 @@ public class hitSplat : MonoBehaviour
     public static void Create(Camera cam, Transform parent, Transform recipient, int damageAmount)
     {
         Transform pfHitSplat = Resources.Load<Transform>("hitSplat");
-        Transform hitSplatTransform = Instantiate(pfHitSplat, cam.WorldToScreenPoint(recipient.transform.position), Quaternion.identity, parent); //THIS IS WHERE THE ERROR IS
+
+        float randx = Random.Range(-0.3f, 0.3f);
+        float randy = Random.Range(-0.3f, 0.3f);
+        Vector3 position = cam.WorldToScreenPoint(recipient.transform.position) + new Vector3(randx * Screen.width, randy * Screen.height);
+        
+        Transform hitSplatTransform = Instantiate(pfHitSplat, position, Quaternion.identity, parent); //THIS IS WHERE THE ERROR IS
 
         hitSplat _hitsplat = hitSplatTransform.GetComponent<hitSplat>();
         _hitsplat.Setup(damageAmount, cam, recipient);

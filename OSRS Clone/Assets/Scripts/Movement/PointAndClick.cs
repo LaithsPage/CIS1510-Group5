@@ -80,7 +80,7 @@ public class PointAndClick : MonoBehaviour
             if(focus.primaryAction == Interactable.PrimaryAction.Attack)
             {
                 radius = GetComponent<Inventory>().getWeaponRange();
-                Debug.Log(radius);
+                
             }
             else
             {
