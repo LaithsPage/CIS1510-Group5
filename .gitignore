@@ -58,5 +58,7 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-OSRS Clone/Assets/LowlyPoly
+OSRS Clone/Assets/LowlyPoly/
 /OSRS Clone/[Aa]ssets/Materials/High Res/
+
+/OSRS Clone/Assets/_PureNature/
