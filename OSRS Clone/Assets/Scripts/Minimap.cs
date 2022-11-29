@@ -7,11 +7,17 @@ public class Minimap : MonoBehaviour
     public Transform player;
     public Transform mainCamera;
 
+    private float height;
+
+    private void Start()
+    {
+        height = transform.position.y;
+    }
     // Update is called once per frame
     void LateUpdate()
     {
         Vector3 newpos = player.transform.position;
-        newpos.y = transform.position.y;
+        newpos.y += height;
 
         transform.position = newpos;
 

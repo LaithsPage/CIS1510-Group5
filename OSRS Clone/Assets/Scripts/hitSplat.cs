@@ -12,8 +12,9 @@ public class hitSplat : MonoBehaviour
 
         float randx = Random.Range(-0.3f, 0.3f);
         float randy = Random.Range(-0.3f, 0.3f);
-        Vector3 position = cam.WorldToScreenPoint(recipient.transform.position) + new Vector3(randx * Screen.width, randy * Screen.height);
-        
+        //Vector3 position = cam.WorldToScreenPoint(recipient.transform.position) + new Vector3(randx * Screen.width, randy * Screen.height);
+        Vector3 position = cam.WorldToScreenPoint(recipient.transform.position);
+
         Transform hitSplatTransform = Instantiate(pfHitSplat, position, Quaternion.identity, parent); //THIS IS WHERE THE ERROR IS
 
         hitSplat _hitsplat = hitSplatTransform.GetComponent<hitSplat>();

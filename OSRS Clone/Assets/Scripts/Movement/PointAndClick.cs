@@ -5,6 +5,7 @@ public class PointAndClick : MonoBehaviour
 {
     public Camera cam;
     private NavMeshAgent player;
+    public float playerSpeed;
     //public Animator playerAnimator;
     //public GameObject targetDest;
 
@@ -48,6 +49,15 @@ public class PointAndClick : MonoBehaviour
         {
             playerAnimator.SetBool("isWalking", false);
         }*/
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            if(player.speed > playerSpeed)
+                player.speed = playerSpeed;
+            else
+                player.speed = playerSpeed * 3f;
+            
+        }
 
         if(focus != null)
         {
