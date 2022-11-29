@@ -1460,6 +1460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1745874732}
+  playerSpeed: 0
 --- !u!195 &1717180694
 NavMeshAgent:
   m_ObjectHideFlags: 0
