@@ -1,0 +1,7 @@
+onDeath()/respawning
+Level system/EXP display
+Sprint button
+Tutorial text popup
+Enemies around the map
+
+maybe: display navigation path
