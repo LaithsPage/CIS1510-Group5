@@ -1,7 +1,5 @@
-onDeath()/respawning
-Level system/EXP display
-Sprint button
-Tutorial text popup
 Enemies around the map
+
+finally -> upload to itch.io
 
 maybe: display navigation path

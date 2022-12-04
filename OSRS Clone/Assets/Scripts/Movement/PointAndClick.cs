@@ -6,17 +6,20 @@ public class PointAndClick : MonoBehaviour
     public Camera cam;
     private NavMeshAgent player;
     public float playerSpeed;
+    
     //public Animator playerAnimator;
     //public GameObject targetDest;
 
     Interactable focus;
+
+    private bool walk = true;
     private void Awake()
     {
         player = GetComponent<NavMeshAgent>();
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && walk)
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitpoint;
@@ -50,16 +53,7 @@ public class PointAndClick : MonoBehaviour
             playerAnimator.SetBool("isWalking", false);
         }*/
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            if(player.speed > playerSpeed)
-                player.speed = playerSpeed;
-            else
-                player.speed = playerSpeed * 3f;
-            
-        }
-
-        if(focus != null)
+        if (focus != null)
         {
             player.SetDestination(focus.interactionTransform.position);
             FaceTarget();
@@ -103,7 +97,7 @@ public class PointAndClick : MonoBehaviour
         focus.OnFocused(transform);
     }
 
-    void RemoveFocus()
+    public void RemoveFocus()
     {
         if (focus != null)
             focus.OnDefocused();
@@ -119,6 +113,25 @@ public class PointAndClick : MonoBehaviour
         Vector3 direction = (focus.transform.position - player.transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+
+
+    public void toggleSprint(float x)
+    {
+        if (player.speed > playerSpeed)
+            player.speed = playerSpeed;
+        else
+            player.speed = playerSpeed * x;
+    }
+
+    public void toggleWalk()
+    {
+        walk = !walk;
+    }
+    
+    public void toggleWalk(bool x)
+    {
+        walk = x;
     }
     //player.stoppingDistance = attack range
 }

@@ -6,19 +6,38 @@ using TMPro;
 public class hitSplat : MonoBehaviour
 {
     // Create a Damage Popup
+    
+
     public static void Create(Camera cam, Transform parent, Transform recipient, int damageAmount)
     {
         Transform pfHitSplat = Resources.Load<Transform>("hitSplat");
+        Debug.Log(pfHitSplat);
 
         float randx = Random.Range(-0.3f, 0.3f);
         float randy = Random.Range(-0.3f, 0.3f);
         //Vector3 position = cam.WorldToScreenPoint(recipient.transform.position) + new Vector3(randx * Screen.width, randy * Screen.height);
         Vector3 position = cam.WorldToScreenPoint(recipient.transform.position);
 
-        Transform hitSplatTransform = Instantiate(pfHitSplat, position, Quaternion.identity, parent); //THIS IS WHERE THE ERROR IS
+        Transform hitSplatTransform = Instantiate(pfHitSplat, position, Quaternion.identity, parent);
 
         hitSplat _hitsplat = hitSplatTransform.GetComponent<hitSplat>();
         _hitsplat.Setup(damageAmount, cam, recipient);
+    }
+    public static void Create(Camera cam, Transform parent, Transform recipient, int damageAmount, Transform pfImport, float time)
+    {
+        //Transform pfHitSplat = Resources.Load<Transform>("hitSplat");
+        Transform pfHitSplat = pfImport;
+
+        float randx = Random.Range(-0.3f, 0.3f);
+        float randy = Random.Range(-0.3f, 0.3f);
+        //Vector3 position = cam.WorldToScreenPoint(recipient.transform.position) + new Vector3(randx * Screen.width, randy * Screen.height);
+        
+        Vector3 position = cam.WorldToScreenPoint(recipient.transform.position);
+
+        Transform hitSplatTransform = Instantiate(pfHitSplat, position, Quaternion.identity, parent);
+
+        hitSplat _hitsplat = hitSplatTransform.GetComponent<hitSplat>();
+        _hitsplat.Setup(damageAmount, cam, recipient, time);
     }
 
     private static int sortingOrder;
@@ -44,6 +63,20 @@ public class hitSplat : MonoBehaviour
         textMesh.SetText(damageAmount.ToString());
 
         disappearTime = deleteTime;
+
+        sortingOrder++;
+        //textMesh.sortingOrder = sortingOrder;
+
+        moveVector = new Vector3(.7f, 1) * 60f;
+    }
+    public void Setup(int damageAmount, Camera cam, Transform recipient, float imDeleteTime)
+    {
+        this.cam = cam;
+        this.recipient = recipient;
+
+        textMesh.SetText(damageAmount.ToString());
+
+        disappearTime = imDeleteTime;
 
         sortingOrder++;
         //textMesh.sortingOrder = sortingOrder;

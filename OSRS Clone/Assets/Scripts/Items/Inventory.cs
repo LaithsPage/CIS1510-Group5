@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour
     }
     public float getWeaponFireRate()
     {
-        return weapon.fireRate;
+        return weapon.attacksPerSecond;
     }
     public float getWeaponRange()
     {

@@ -17,5 +17,16 @@ public class EnemyXP : XPParent
         }
     }
 
+    public override void addXP(XPType type, int add)
+    {
+        xp[type] += add;
+        
+        if (xp[type] >= xpPerLevel[xpLevel[type] + 1] && xpLevel[type] < maxLevel)
+        {
+            xpLevel[type] += 1;
+        }
+    }
+
+
     //TODO drop xp
 }

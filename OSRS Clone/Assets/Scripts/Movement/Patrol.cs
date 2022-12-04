@@ -59,4 +59,6 @@ public class Patrol : MonoBehaviour
     {
         gameObject.GetComponent<NavMeshAgent>().isStopped = true;
     }
+
+    
 }

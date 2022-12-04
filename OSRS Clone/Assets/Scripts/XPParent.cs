@@ -36,6 +36,10 @@ public class XPParent : MonoBehaviour //PlayerXP, EnemyXP
     private float p13;
     private float p2;
 
+    //other private parts ;)
+    private Camera mainCamera;
+    private Transform hitSplatParent;
+
 
     private void Awake()
     {
@@ -60,10 +64,23 @@ public class XPParent : MonoBehaviour //PlayerXP, EnemyXP
         }
     }
 
-    public void addXP(XPType type, int add)
+    private void Start()
     {
-        xp[type] += add;
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        hitSplatParent = GameObject.Find("hitSplats").GetComponent<Transform>();
+    }
 
+    public virtual void addXP(XPType type, int add)
+    {
+
+        xp[type] += add;
+        //Transform pfHitSplat = Resources.Load<Transform>("hitSplat");
+        Transform pfXpSplat = Resources.Load<Transform>("xpSplat");
+        //public static void Create(Camera cam, Transform parent, Transform recipient, int damageAmount, Transform pfImport)
+        //hitSplat.Create(mainCamera, hitSplatParent, target, damage);
+
+        
+        hitSplat.Create(mainCamera, hitSplatParent, this.transform, add, pfXpSplat, 2f);
         if (xp[type] >= xpPerLevel[xpLevel[type] + 1] && xpLevel[type] < maxLevel)
         {
             xpLevel[type] += 1;

@@ -22,7 +22,7 @@ public class Defense : MonoBehaviour //EnemyDefense
     public static event DoDefense doDefense;
 
     Attack attack;
-    private Transform attacker;
+    private Transform attacker = null;
 
     private Patrol patrol;
 
@@ -113,6 +113,18 @@ public class Defense : MonoBehaviour //EnemyDefense
         */
         agent.stoppingDistance = inventory.getWeaponRange() * 0.9f;
         agent.SetDestination(attacker.position);
-        
+        FaceTarget(attacker);
+    }
+
+    public Transform getAttacker()
+    {
+        return attacker;
+    }
+
+    void FaceTarget(Transform focus)
+    {
+        Vector3 direction = (focus.transform.position - agent.transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 }
