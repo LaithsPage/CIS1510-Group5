@@ -37,7 +37,6 @@ public class Death : MonoBehaviour //EnemyDeath
             Transform Go = UI_Canvas.transform.GetChild(i);
             
             Go.gameObject.SetActive(false);
-            Debug.Log(Go);
         }
 
         //Transform hitSplatTransform = Instantiate(pfHitSplat, position, Quaternion.identity, parent);

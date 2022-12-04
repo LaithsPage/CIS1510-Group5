@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
-
+    private Transform UI_Canvas;
     private GameObject player;
     private Transform spawn;
 
@@ -12,7 +12,7 @@ public class Respawn : MonoBehaviour
     {
         player = GameObject.Find("Player");
         spawn = GameObject.Find("Map").transform.Find("Spawn");
-
+        UI_Canvas = GameObject.Find("UI").transform;
         Debug.Log(spawn);
 
     }
@@ -28,6 +28,15 @@ public class Respawn : MonoBehaviour
         spawn.gameObject.SetActive(true);
         player.transform.position = spawn.transform.position;
         spawn.gameObject.SetActive(false);
+
+
+        for (int i = 0; i < UI_Canvas.transform.childCount; i++)
+        {
+            Transform Go = UI_Canvas.transform.GetChild(i);
+
+            Go.gameObject.SetActive(true);
+        }
+
 
         Destroy(this.transform.parent.gameObject);
     }
