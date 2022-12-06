@@ -7,7 +7,7 @@ public class EnemyDeath : Death
     private Defense defense;
     private Transform attacker;
 
-    private void Start()
+    public override void Start()
     {
         base.Start();
 
