@@ -11,4 +11,12 @@ public class TutorialButton : MonoBehaviour
         player.toggleWalk(true);
         Destroy(transform.parent.gameObject);
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            d();
+        }
+    }
 }
